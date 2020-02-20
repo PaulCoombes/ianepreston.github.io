@@ -5,9 +5,9 @@ There are lots of great guides for setting up an environment to do data science.
 * They're designed for Mac/Linux and I run Windows at work
 * They just don't match my exact personal taste/environment
 
-This guide is intended to be useful for anyone trying to get set up for data science in python on windows. I think most of the steps are fairly generic, and I'll make an effort to highlight the parts that are more opinionated. The sections below will go over the core software that will need to be installed, and some handy customizations.
+This guide is intended to be useful for anyone trying to get set up for data science in python on Windows. I think most of the steps are fairly generic, and I'll make an effort to highlight the parts that are more opinionated. The sections below will go over the core software that will need to be installed and some handy customizations.
 
-*edit 2020-02-17* - I realized I wanted make as well, so I added a section on that. Also made note of an issue with launching interactive python from git bash, as well as solutions.
+*edit 2020-02-17* - I realized I wanted ```make``` as well, so I added a section on that. Also made note of an issue with launching interactive python from git bash, as well as solutions.
 
 1. TOC
 {:toc}
@@ -18,22 +18,22 @@ First we need an editor to actually work in. I'm a huge fan of VS code for this.
 
 ### App installation
 
-Head to the [VS code download page](https://code.visualstudio.com/download#) and pick the Win64 user installer
+Head to the [VS code download page](https://code.visualstudio.com/download#) and pick the Win64 user installer.
 
 Go through the install process, I think all the defaults are fine, so just keep hitting next. You can optionally add in things like "Add open with code action to Windows Explorer". It won't directly impact the rest of what we're doing, just integrates code with the rest of your desktop a little more fully.
 
 ### Basic extensions
 
-What makes VS code so great is all its extensions. There are a few that require some configuration so I'll address them later, here are some out of the box ones that are great:
+What makes VS code so great are all of its extensions. There are a few that require some configuration so I'll address them later; here are some out-of-the-box ones that are great:
 
-* Bracket Pair Colorizer 2 colour codes your brackets. Super helpful for debugging.
-* Dracula Official is a nice dark theme. The Material themes are also nice.
-* GitLens integrates a lot of git functionality into VS code, things like showing who made what changes inline in your code.
+* Bracket Pair Colorizer 2 colour codes your brackets. Super helpful for debugging
+* Dracula Official is a nice dark theme. The Material themes are also nice
+* GitLens integrates a lot of git functionality into VS code, things like showing who made what changes inline in your code
 * indent-rainbow colour codes your indentation level, similar to the brackets
 * markdownlint gives style suggestions when writing markdown files (like this guide!)
 * Material icon theme makes the icons in the file explorer a little nicer
 * Python is pretty core for this for obvious reasons
-* Visual Studio Intellicode gives better code completion than the built in one.
+* Visual Studio Intellicode gives better code completion than the built in one
 
 ### Finish up later
 
@@ -41,13 +41,13 @@ There's more configuration to do in VS code, but prior to that let's set up the 
 
 ## Install git and bash
 
-Like any sort of coding work, data science is done best under version control, and git is the defacto standard for that. Bash is not as obviously essential to coding/data science, but it comes with git, and using it for everything rather than the Windows shells will make it easier to apply instructions from other guides in the future, since most of them will assume you're using bash. Plus I like bash way more than the command prompt or powershell.
+Like any sort of coding work, data science is done best under version control, and git is the defacto standard for that. Bash is not as obviously essential to coding/data science, but it comes with git and using it for everything rather than the Windows shells will make it easier to apply instructions from other guides in the future, since most of them will assume you're using bash. Plus I like bash way more than the command prompt or powershell.
 
 git does not require any special admin privileges to install (although for some reason uninstalling it seems to require admin, so be aware of that). Go to the [Git download page](https://git-scm.com/download/win) and Choose 64-bit Git for Windows Setup and run the installer. First part is to read (if you want) and accept the license:
 
 ![](/images/windows_ds_software/git_01.png "git license")
 
-The default path should be fine, but take note of where it's being installed because we'll need to point VS code to it later
+The default path should be fine, but take note of where it's being installed because we'll need to point VS code to it later.
 
 ![](/images/windows_ds_software/git_02.png "git path")
 
@@ -65,7 +65,9 @@ At the next prompt leave it on the default, we want VS code and other tools to k
 
 ![](/images/windows_ds_software/git_05.png "git path")
 
-For the SSH executable we'll use openssh. Later we'll configure remote development with VS code and also have to use openssh there. If you use and like putty you could swap this out, but note that VS code (at least at time of this writing) doesn't support putty, so you'll have to set things up separately there.
+The SSH executable  prompt doesn't seem to appear if you don't have putty.  If that's the case, it will just install SSH for you and you've saved yourself a click.  Huzzah.
+
+If you do have a choice, we'll use openssh. Later we'll configure remote development with VS code and also have to use openssh there. If you use and like putty you could swap this out, but note that VS code (at least at time of this writing) doesn't support putty, so you'll have to set things up separately there.
 
 ![](/images/windows_ds_software/git_06.png "git ssh")
 
@@ -77,7 +79,7 @@ At the next prompt we again want the default. Windows and *NIX systems use diffe
 
 ![](/images/windows_ds_software/git_08.png "git line endings")
 
-Leave the console on MinTTY, it works nicer than the other. I thought you might need it to be the Windows default console to integrate with VS code but that is not the case. In fact it seems to break console integration with VS code. Go figure.
+Leave the console on MinTTY; the Windows default console seems to break console integration with VS code. Go figure.
 
 ![](/images/windows_ds_software/git_09.png "git terminal")
 
@@ -123,7 +125,7 @@ I had an old install of putty when I first set up git bash. Even though I told i
 
 ### Additional utilities
 
-Git bash has decent functionality out of the box, but there may be additional utilities you want to install. In my particular case, I'd like to be able to use ```make``` in my projects. Thanks to [this gist](https://gist.github.com/evanwill/0207876c3243bbb6863e65ec5dc3f058#file-gitbash_windows-md) I found that it's pretty easy to do. I'll reproduce the ```make``` install instructions here, but all credit for this part goes to the original author.
+Git bash has decent functionality out of the box, but there may be additional utilities you want to install. In my particular case, I'd like to be able to use ```make``` in my projects. For a great beginner friendly intro to makefiles in the context of python projects, check out [calm code](https://calmcode.io/makefiles/the-problem.html). Thanks to [this gist](https://gist.github.com/evanwill/0207876c3243bbb6863e65ec5dc3f058#file-gitbash_windows-md) I found that it's pretty easy to do. I'll reproduce the ```make``` install instructions here, but all credit for this part goes to the original author.
 
 Wherever you installed git bash there should be a ```mingw64``` folder. My home machine did a system install, so I found it in ```C:\Program Files\Git\mingw64```, but my work one was a user level install, so that one ended up in ```%UserProfile%\AppData\Local\Programs\Git\mingw64```. You can always find where it is by right clicking the shortcut to git bash in your start menu and hitting properties, that will show you the path.
 
@@ -134,8 +136,7 @@ Wherever you installed git bash there should be a ```mingw64``` folder. My home 
 * Extract zip.
 * Copy the contents to your `Git\mingw64\` merging the folders, but do NOT overwrite/replace any existing files.
 
-That was all I had to do to make the basic makefiles that I wanted to use. As noted above, if you want to actually build c packages or something your process will likely be more complex. For a great beginner friendly intro to makefiles in the context of python projects, check out [calm code](https://calmcode.io/makefiles/the-problem.html).
-
+That was all I had to do to make the basic makefiles that I wanted to use. As noted above, if you want to actually build c packages or something your process will likely be more complex. 
 
 ### Console bug
 
@@ -305,4 +306,4 @@ There's tons of stuff to learn about VS code to make it super handy. At a minimu
 
 ## Wrapping up
 
-That's about it! After following this guide you should have a very comfy software setup in Windows to do data science from.
+That's about it! After following this guide you should have a very comfy software setup in Windows from which to do data science.
